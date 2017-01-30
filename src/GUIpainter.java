@@ -24,6 +24,9 @@ public class GUIpainter extends JPanel implements ActionListener, KeyListener{
             Graphics2D g2 = (Graphics2D) g;
             g2.fill(new Ellipse2D.Double(x,y,40,40));
             t.start();
+
+            //System.out.println("VelX: " + velX);
+            //System.out.println("VelY: " + velY);
         }
 
         public void actionPerformed (ActionEvent e){
@@ -32,7 +35,7 @@ public class GUIpainter extends JPanel implements ActionListener, KeyListener{
 
             repaint();
         }
-
+        /*
         public void up(){
             velY = -1.5;
             velX = 0;
@@ -49,26 +52,36 @@ public class GUIpainter extends JPanel implements ActionListener, KeyListener{
             velY = 0.0f;
             velX = 1.5;
         }
+        */
+        public void stopNow(){
+            velY = 0.0f;
+            velX = 0.0f;
+        }
 
 
     public void keyPressed(KeyEvent e){
         int code = e.getKeyCode();
 
-        if (code == KeyEvent.VK_UP){
-            up();
+        if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W){
+            //up();
+            velY = -1.5;
         }
-        if (code == KeyEvent.VK_DOWN){
-            down();
+        if (code == KeyEvent.VK_DOWN || code == KeyEvent.VK_S){
+            //down();
+            velY = 1.5;
         }
-        if (code == KeyEvent.VK_RIGHT){
-            right();
+        if (code == KeyEvent.VK_RIGHT || code == KeyEvent.VK_D){
+            //right();
+            velX = 1.5;
         }
-        if (code == KeyEvent.VK_LEFT){
-            left();
+        if (code == KeyEvent.VK_LEFT || code == KeyEvent.VK_A){
+            //left();
+            velX = -1.5;
         }
     }
     public void keyTyped(KeyEvent e){}
     public void keyReleased(KeyEvent e){
+        stopNow();
     }
 }
 
